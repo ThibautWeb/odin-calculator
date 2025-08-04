@@ -8,7 +8,7 @@
 .container div {
   padding: 0;
 }
-.container div.screen {
+.container .screen {
   border: 1px solid grey;
   width: 120px;
   height: 30px;
@@ -19,7 +19,7 @@
   align-items: center;
   border-radius: 2px;
 }
-.screen p {
+.container .screen p {
   font-size: 18px;
   
 }
@@ -28,6 +28,6 @@
   height: 30px;
   font-size: 14px;
 }
-button#zero {
+.container div button[value="0"] {
   width: 60px;
 }
