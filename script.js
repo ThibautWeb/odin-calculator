@@ -1,46 +1,52 @@
-let rightOperand = "0"
-let leftOperand = ""
-let operator =""
+let newNumber = "0"
+let savedNumber = ""
+let operator = ""
+let screen = document.querySelector(".screen p")
 
-document.querySelectorAll(".digit")
-  .forEach(el => el.addEventListener("click", e => inputDigit(e.target.value)))
-function inputDigit(val) {
-  if (rightOperand === "" || rightOperand === "0") {
-    rightOperand = val
+// DIGITS AND POINT
+function pressDigit(val) {
+  if (newNumber === "0") {
+    if (val !== "0") {
+      newNumber = val
+    }
   } else {
-    rightOperand += val
+     newNumber += val
   }
-  let screen = document.querySelector(".screen p")
-  screen.textContent = rightOperand
+  updateScreen()
 }
+document.querySelectorAll(".digit").forEach(el => el.addEventListener("click", e => pressDigit(e.target.value)))
 
-document.querySelector("button[value='.']").addEventListener("click", inputPoint)
-function inputPoint() {
-  if (rightOperand !== "" && !rightOperand.includes(".")) {
-    rightOperand += "."
-    let screen = document.querySelector(".screen p")
-    screen.textContent = rightOperand
+function pressPoint() {
+  if (!newNumber.includes(".")) {
+    console.log(newNumber)
+    newNumber += "."
+    updateScreen()
   }
 }
+document.querySelector("button[value='.']").addEventListener("click", pressPoint)
 
-document.querySelector("button[value='+']").addEventListener("click", inputPlus)
-function inputPlus() {
-  console.log("plus")
+// OPERATIONS
+function pressPlus() {
 }
-document.querySelector("button[value='-']").addEventListener("click", inputMinus)
-function inputMinus() {
-  console.log("minus")
-}
-document.querySelector("button[value='*']").addEventListener("click", inputMultiply)
-function inputMultiply() {
-  console.log("multiply")
-}
-document.querySelector("button[value='/']").addEventListener("click", inputDivide)
-function inputDivide() {
-  console.log("divide")
-}
-document.querySelector("button[value='=']").addEventListener("click", inputEqual)
-function inputEqual() {
-  console.log("equal")
-}
+document.querySelector("button[value='+']").addEventListener("click", pressPlus)
 
+function pressMultiply() {
+}
+document.querySelector("button[value='*']").addEventListener("click", pressMultiply)
+
+function pressMinus() {
+}
+document.querySelector("button[value='-']").addEventListener("click", pressMinus)
+
+function pressDivide() {
+}
+document.querySelector("button[value='/']").addEventListener("click", pressDivide)
+
+function pressEqual() {
+}
+document.querySelector("button[value='=']").addEventListener("click", pressEqual)
+
+// UTILITIES
+function updateScreen() {
+  screen.textContent = newNumber
+}
