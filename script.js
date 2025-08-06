@@ -5,10 +5,22 @@ let screen = document.querySelector(".screen p")
 
 // DIGITS AND POINT
 function pressDigit(val) {
+  if (newNumber === "" || newNumber === "0") {
+    newNumber = val
+  } else {
+    newNumber += val
+  }
+  updateScreen(newNumber)
 }
 document.querySelectorAll(".digit").forEach(el => el.addEventListener("click", e => pressDigit(e.target.value)))
 
 function pressPoint() {
+  if (newNumber === "" || newNumber === "0") {
+    newNumber = "0."
+  } else if (!newNumber.includes(".")) {
+    newNumber += "."
+  }
+  updateScreen(newNumber)
 }
 document.querySelector("button[value='.']").addEventListener("click", pressPoint)
 
