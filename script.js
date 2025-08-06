@@ -26,6 +26,17 @@ document.querySelector("button[value='.']").addEventListener("click", pressPoint
 
 // OPERATIONS
 function pressPlus() {
+  if (newNumber !== "") {
+    if (savedNumber !== "") {
+      operate()
+    } else {
+      saveNumber()
+    }
+  } else if (savedNumber === "") {
+    return
+  }
+  operator = "+"
+  updateScreen(savedNumber)
 }
 document.querySelector("button[value='+']").addEventListener("click", pressPlus)
 
@@ -47,6 +58,10 @@ document.querySelector("button[value='=']").addEventListener("click", pressEqual
 
 // UTILITIES
 function operate() {
+  if (operator === "+") {
+    savedNumber = +savedNumber + +newNumber
+  }
+  newNumber = ""
 }
 
 function saveNumber() {
