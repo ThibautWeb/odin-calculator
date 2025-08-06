@@ -7,6 +7,7 @@ let screen = document.querySelector(".screen p")
 function pressDigit(val) {
   if (newNumber === "" || newNumber === "0") {
     newNumber = val
+    if (operator === "") savedNumber = ""
   } else {
     newNumber += val
   }
@@ -26,41 +27,88 @@ document.querySelector("button[value='.']").addEventListener("click", pressPoint
 
 // OPERATIONS
 function pressPlus() {
+  if (newNumber === "" && savedNumber === "") return
   if (newNumber !== "") {
     if (savedNumber !== "") {
       operate()
     } else {
       saveNumber()
     }
-  } else if (savedNumber === "") {
-    return
   }
-  operator = "+"
   updateScreen(savedNumber)
+  operator = "+"
 }
 document.querySelector("button[value='+']").addEventListener("click", pressPlus)
 
-function pressMultiply() {
-}
-document.querySelector("button[value='*']").addEventListener("click", pressMultiply)
-
 function pressMinus() {
+  if (newNumber === "" && savedNumber === "") return
+  if (newNumber !== "") {
+    if (savedNumber !== "") {
+      operate()
+    } else {
+      saveNumber()
+    }
+  }
+  updateScreen(savedNumber)
+  operator = "-"
 }
 document.querySelector("button[value='-']").addEventListener("click", pressMinus)
 
+function pressMultiply() {
+  if (newNumber === "" && savedNumber === "") return
+  if (newNumber !== "") {
+    if (savedNumber !== "") {
+      operate()
+    } else {
+      saveNumber()
+    }
+  }
+  updateScreen(savedNumber)
+  operator = "*"
+}
+document.querySelector("button[value='*']").addEventListener("click", pressMultiply)
+
 function pressDivide() {
+  if (newNumber === "" && savedNumber === "") return
+  if (newNumber !== "") {
+    if (savedNumber !== "") {
+      operate()
+    } else {
+      saveNumber()
+    }
+  }
+  updateScreen(savedNumber)
+  operator = "/"
 }
 document.querySelector("button[value='/']").addEventListener("click", pressDivide)
 
 function pressEqual() {
+  if (newNumber === "" && savedNumber === "") return
+  if (newNumber !== "") {
+    if (savedNumber !== "") {
+      operate()
+    } else {
+      saveNumber()
+    }
+  }
+  updateScreen(savedNumber)
+  operator = ""
 }
 document.querySelector("button[value='=']").addEventListener("click", pressEqual)
 
 // UTILITIES
 function operate() {
+  console.log(operator)
   if (operator === "+") {
     savedNumber = +savedNumber + +newNumber
+  } else if (operator === "-") {
+    savedNumber = +savedNumber - +newNumber
+  } else if (operator === "*") {
+    savedNumber = +savedNumber * +newNumber
+  } else if (operator === "/") {
+    savedNumber = +savedNumber / +newNumber
   }
+  savedNumber = savedNumber.toFixed(3)
   newNumber = ""
 }
 
